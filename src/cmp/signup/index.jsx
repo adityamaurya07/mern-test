@@ -1,15 +1,31 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Layout from "../shared/layout";
+import axios from "axios";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const router = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios({
+        method: "post",
+        url: "http://localhost:9000/auth/signup",
+        data,
+      });
+      message.success(res.data.message);
+      router("/login");
+      // console.log(res.data);
+    } catch (err) {
+      message.error("Something went wrong");
+      // console.log(err.response);
+    }
   };
   return (
     <Layout>
@@ -61,18 +77,18 @@ const Signup = () => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="number"
+              htmlFor="role"
               className="block mb-2 text-sm font-medium text-gray-700"
             >
-              Number
+              Role
             </label>
             <input
-              {...register("number", { required: true })}
+              {...register("role", { required: true })}
               type="text"
-              name="number"
+              name="role"
               className="focus:outline-none block w-full shadow-sm sm:text-sm border rounded-md py-2 px-3"
             />
-            {errors.number && (
+            {errors.role && (
               <span className="text-red-500 text-[13px]">
                 This field is required
               </span>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,9 +24,11 @@ const Login = () => {
       });
       dispatch(login(response.data));
       navigate("/department");
+      message.success("Login Success !");
     } catch (err) {
       console.log(err);
       dispatch(logout());
+      message.error("Something went wrong !");
     }
   };
 
