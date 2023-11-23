@@ -11,9 +11,9 @@ const userSchema = new mongoose.Schema({
     required: [true, "Email is requires !"],
     unique: true,
   },
-  isManager: {
-    type: Boolean,
-    default: false,
+  role: {
+    type: String,
+    required: [true, "Role is requires !"],
   },
   password: {
     type: String,
@@ -37,20 +37,6 @@ userSchema.pre("save", async function (next) {
       .countDocuments({ email: this.email });
     if (count > 0) {
       throw new Error("Email is already registered !");
-    }
-    next();
-  } catch (error) {
-    next(error);
-  }
-});
-
-userSchema.pre("save", async function (next) {
-  try {
-    const count = await mongoose
-      .model("User")
-      .countDocuments({ mobile: this.mobile });
-    if (count > 0) {
-      throw new Error("Mobile number is already registered !");
     }
     next();
   } catch (error) {

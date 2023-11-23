@@ -40,20 +40,23 @@ export const Get = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
 export const Post = async (req, res) => {
-  console.log(req.body);
   try {
     const userData = req.body;
-    console.log("user:", userData);
+    console.log(userData);
     const newUser = new User(userData);
     const userRes = await newUser.save();
+
+    console.log("User created:", userRes);
+
     res.status(200).json({
       isUserCreated: true,
-      message: "User created !",
+      message: "User created successfully!",
     });
   } catch (error) {
-    res.status(409).json({
+    // Use 400 Bad Request status for request payload or data issues
+    console.log(error);
+    res.status(400).json({
       isUserCreated: false,
       message: error.message,
     });
