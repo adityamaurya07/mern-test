@@ -1,1 +1,3 @@
 # mern-test
+if you intract with the application fist you can signup then login after that you can go department or employee route.
+some work is pending....
