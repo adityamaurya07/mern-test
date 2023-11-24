@@ -1,6 +1,6 @@
 import Layout from "../shared/layout";
 
-import { Space, Table, Tag } from "antd";
+import { Space, Table, Tag, Button } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 import axios from "axios";
@@ -62,7 +62,17 @@ const Employee = () => {
     <Layout>
       <div className="container mx-auto my-8">
         {authSlice.user && authSlice.user ? (
-          <Table dataSource={employee && employee} columns={columns} />
+          <>
+            <div className="text-end pb-4 pr-4">
+              <Button
+                type="text"
+                className="bg-[#F0F5FF] text-indigo-500 hover:!bg-indigo-500 hover:!text-white"
+              >
+                Create Employee
+              </Button>
+            </div>
+            <Table dataSource={employee && employee} columns={columns} />
+          </>
         ) : (
           navigate("/signup")
         )}
