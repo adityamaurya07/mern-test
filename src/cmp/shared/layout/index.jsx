@@ -7,11 +7,11 @@ const Layout = ({ children }) => {
   const { authSlice } = useSelector((res) => res);
   const navItems = [
     { id: 1, label: "Home", link: "/" },
-    { id: 1, label: "Department", link: "/department" },
-    { id: 1, label: "Employee", link: "/employee" },
-    { id: 2, label: "Login", link: "/login" },
-    { id: 3, label: "Signup", link: "/signup" },
-    { id: 4, label: "Logout", link: "/logout" },
+    { id: 2, label: "Department", link: "/department" },
+    { id: 3, label: "Employee", link: "/employee" },
+    { id: 4, label: "Login", link: "/login" },
+    { id: 5, label: "Signup", link: "/signup" },
+    { id: 6, label: "Logout", link: "/logout" },
   ];
 
   // Filter navItems based on authentication status
