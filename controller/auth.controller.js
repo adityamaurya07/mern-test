@@ -11,6 +11,7 @@ export const Register = async (req, res) => {
     console.log("register", registerRes.data);
     res.status(registerRes.status).json(registerRes.data);
   } catch (err) {
+    console.log(err);
     res.status(err.response.status).json(err.response.data);
   }
 };
